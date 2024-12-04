@@ -42,18 +42,22 @@ class SortingVisualization extends Visualization {
   }
 
   handleInput(key) {
-      if (key === 'B' || key === 'b') {
-          this.sortingAlgorithm = 'Bubble Sort';
-          this.sortedMovies = this.bubbleSort([...this.movies], 'revenue');
-      } else if (key === 'I' || key === 'i') {
-          this.sortingAlgorithm = 'Built-in Sort';
-          this.sortedMovies = this.builtInSort([...this.movies], 'revenue');
-      }
+    if (key === 'B' || key === 'b') {
+        this.sortingAlgorithm = 'Bubble Sort';
+        this.sortedMovies = this.bubbleSort([...this.movies], 'revenue');
+    } 
+    
+    else if (key === 'I' || key === 'i') {
+        this.sortingAlgorithm = 'Built-in Sort';
+        this.sortedMovies = this.builtInSort([...this.movies], 'revenue');
+    }
 
-      if (this.sortingAlgorithm) {
-          this.sorted = true;
-      }
-  }
+    if (this.sortingAlgorithm) {
+        this.sorted = true;
+        recursiveVis.draw(); 
+    }
+}
+
 
   bubbleSort(moviesArray, property) {
       let start = millis();
