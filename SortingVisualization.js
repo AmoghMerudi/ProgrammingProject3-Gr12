@@ -17,8 +17,10 @@ class SortingVisualization extends Visualization {
       if (this.sorted) {
           this.drawBars(this.sortedMovies, "revenue", 100, 150, width - 200, height / 2 - 100);
           text(this.runtimeAnalysis, 50, height / 2 - 30);
-      } else {
-          this.drawBars(this.movies, "revenue", 100, 150, width - 200, height / 2 - 100);
+      } 
+      
+      else {
+          this.drawBars(this.movies, "revenue", 100, 150, width, height / 2 - 100);
           text("Press 'B' for Bubble Sort, 'I' for Built-in Sort", 50, height / 2 - 30);
       }
   }

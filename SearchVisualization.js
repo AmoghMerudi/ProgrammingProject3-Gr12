@@ -24,7 +24,7 @@ class SearchVisualization extends Visualization {
           text(`No results found for "${this.target}"`, 50, height - 200);
           text(this.runtimeAnalysis, 50, height - 50);
       } else {
-          text("Press 'L' for Linear Search, 'B' for Binary Search", 50, height - 200);
+          text("Press 'L' for Linear Search, 'N' for Binary Search", 50, height - 200);
       }
   }
 
@@ -32,7 +32,7 @@ class SearchVisualization extends Visualization {
       if (key === 'L' || key === 'l') {
           this.searchAlgorithm = "Linear Search";
           this.linearSearch();
-      } else if (key === 'B' || key === 'b') {
+      } else if (key === 'N' || key === 'n') {
           this.searchAlgorithm = "Binary Search";
           this.binarySearch();
       }

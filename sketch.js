@@ -33,41 +33,22 @@ function setup() {
     recursiveVis = new RecursiveVisualization(sortingVis, searchVis);
 
     noLoop(); // Only draw once unless animations are required
-    //searchVis.setTarget("Harry Potter");
-    activeVisualization = sortingVis;
+    searchVis.setTarget("Harry Potter");
 }
 
 function draw() {
-  background(30);
+    background(30);
 
-  // Draw the active visualization
-  if (activeVisualization) {
-      activeVisualization.draw();
-  }
+    // Draw each visualization
+    sortingVis.draw();
+    searchVis.draw();
+    recursiveVis.draw();
 }
 
 function keyPressed() {
-  // Pass key inputs to the active visualization
-  if (activeVisualization) {
-      activeVisualization.handleInput(key);
-  }
+    sortingVis.handleInput(key);
+    searchVis.handleInput(key);
+    recursiveVis.handleInput(keyCode);
 
-  // Switch between visualizations using keys (e.g., '1', '2', '3')
-  if (key === '1') {
-      activeVisualization = sortingVis;
-  } else if (key === '2') {
-      activeVisualization = searchVis;
-  } else if (key === '3') {
-      activeVisualization = recursiveVis;
-  }
-}
-
-function mousePressed() {
-  // Handle mouse interaction for search input
-  if (activeVisualization === searchVis) {
-      let target = prompt("Enter a search term (movie title):");
-      if (target) {
-          searchVis.setTarget(target);
-      }
-  }
+    redraw(); // Redraw the canvas after input
 }
