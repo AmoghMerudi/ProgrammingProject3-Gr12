@@ -10,9 +10,11 @@ function preload() {
 }
 
 function setup() {
-    createCanvas(windowWidth, windowHeight);
+    createCanvas(windowWidth*1.2, windowHeight*1.2);
     textSize(12);
     fill(255);
+
+    let input = prompt("Enter a Movie Name: ")
 
     // Convert CSV to JSON after movies is loaded
     let rows = movies.getRows();
@@ -33,7 +35,7 @@ function setup() {
     recursiveVis = new RecursiveVisualization(sortingVis, searchVis);
 
     noLoop(); // Only draw once unless animations are required
-    searchVis.setTarget("Harry Potter");
+    searchVis.setTarget(input);
 }
 
 function draw() {

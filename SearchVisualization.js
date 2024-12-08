@@ -10,29 +10,43 @@ class SearchVisualization extends Visualization {
   }
 
   draw() {
-      textAlign(LEFT);
-      textSize(14);
-      text(`${this.title}`, 50, height - 250);
+    textAlign(LEFT);
+    textSize(14);
+    text(`${this.title}`, 50, height - 250);
 
-      if (this.results.length > 0) {
-          text(`Search Results (${this.searchAlgorithm}):`, 50, height - 200);
-          for (let i = 0; i < this.results.length; i++) {
-              text(`${this.results[i].title}`, 50, height - 180 + i * 20);
-          }
-          text(this.runtimeAnalysis, 50, height - 50);
-      } else if (this.searchAlgorithm) {
-          text(`No results found for "${this.target}"`, 50, height - 200);
-          text(this.runtimeAnalysis, 50, height - 50);
-      } else {
-          text("Press 'L' for Linear Search, 'N' for Binary Search", 50, height - 200);
-      }
-  }
+    if (this.results.length > 0) {
+        text(this.runtimeAnalysis, 50, height - 200);
+
+        text(`Search Results (${this.searchAlgorithm}):`, 50, height - 180);
+        for (let i = 0; i < this.results.length; i++) {
+            let yPosition = height - 160 + i * 20;
+
+            if (yPosition > height - 50) {
+                text("... (more results not shown)", 50, yPosition);
+                break;
+            }
+            text(`${this.results[i].title}`, 50, yPosition);
+            console.log(this.results[i]);
+        }
+    } 
+    
+    else if (this.searchAlgorithm) {
+        text(this.runtimeAnalysis, 50, height - 200);
+        text(`No results found for "${this.target}"`, 50, height - 180);
+    } 
+    
+    else {
+        text("Press 'L' for Linear Search, 'N' for Binary Search", 50, height - 200);
+    }
+}
 
   handleInput(key) {
       if (key === 'L' || key === 'l') {
           this.searchAlgorithm = "Linear Search";
           this.linearSearch();
-      } else if (key === 'N' || key === 'n') {
+      } 
+      
+      else if (key === 'N' || key === 'n') {
           this.searchAlgorithm = "Binary Search";
           this.binarySearch();
       }

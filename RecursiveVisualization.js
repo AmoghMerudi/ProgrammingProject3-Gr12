@@ -25,7 +25,7 @@ class RecursiveVisualization extends Visualization {
             const match = this.sortingVis.runtimeAnalysis.match(/Time: (\d+\.\d+)ms/);
             if (match) {
                 let sortingTime = parseFloat(match[1]);
-                this.branchAngle = map(sortingTime, 0, 1000, PI / 12, PI / 3); 
+                this.branchAngle = map(sortingTime, 0, 1000, PI / 15, PI / 3); 
                 this.branchThickness = map(sortingTime, 0, 1000, 1, 8); 
             }
         }
@@ -36,7 +36,7 @@ class RecursiveVisualization extends Visualization {
         pop();
 
         text("Tree depth depends on search results.", width - 350, height - 70);
-        text("Branch angle & thickness depend on sorting time.", width - 350, height - 50); 
+        text("Branch thickness depend on sorting time.", width - 350, height - 50); 
     }
 
     drawTree(depth, branchLength){
