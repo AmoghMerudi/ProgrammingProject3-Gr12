@@ -1,7 +1,24 @@
+/**
+ * Class for hRecursive Visualization
+ * @extends Visualization
+ * @class
+ */
 class RecursiveVisualization extends Visualization {
+    /**
+     * Constructor for the Recursive Visulaization Class
+     * 
+     * @constructor
+     * @param {String} title - title for the class
+     * @param {Array} sortingVis - for visualizations which depend on the sorting results
+     * @param {Array} searchVis - for visualizations which depend on the search results
+     * @param {int} depth - initial depth of the tree
+     * @param {int} maxBranchLength - initial maximum branch length
+     * @param {int} branchAngle - initial branch angle
+     * @param {int} branchThickness - initial branch thickness
+     */
     constructor(sortingVis, searchVis){
         super();
-        this.title = "Dynamic Recursive Tree";
+        this._title = "Dynamic Recursive Tree";
         this.sortingVis = sortingVis;
         this.searchVis = searchVis;
         this.depth = 5; 
@@ -10,10 +27,13 @@ class RecursiveVisualization extends Visualization {
         this.branchThickness = 2;
     }
 
+    /**
+     * Method which displays text related to the recursive visualization
+     */
     draw(){
         textAlign(LEFT);
         textSize(14);
-        text(`${this.title}`, width - 350, 70);
+        text(`${this._title}`, width - 350, 70);
 
         let sortedMovies = this.sortingVis.sortedMovies;
         let numResults = this.searchVis.results.length;
@@ -39,6 +59,13 @@ class RecursiveVisualization extends Visualization {
         text("Branch thickness depend on sorting time.", width - 350, height - 50); 
     }
 
+    /**
+     * Main method which draws the tree based on the key input
+     * 
+     * @param {int} depth - stores the new width of the tree
+     * @param {int} branchLength - stores the new branch length of the tree
+     * @returns 
+     */
     drawTree(depth, branchLength){
         if (depth === 0) return;
 
@@ -58,6 +85,11 @@ class RecursiveVisualization extends Visualization {
         pop();
     }
 
+    /**
+     * 
+     * @param {Array} sortedMovies - stores the sorted movies
+     * @returns 
+     */
     calculateMaxBranchLength(sortedMovies){
         let maxRevenue = Math.max(...sortedMovies.map(movie => parseFloat(movie.revenue) || 0));
         let scaledBranchLength = map(maxRevenue, 0, maxRevenue, 50, 150); 

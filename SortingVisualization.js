@@ -1,7 +1,23 @@
+/**
+ * Class for handling Sorting
+ * @extends Visualization
+ * @class
+ */
 class SortingVisualization extends Visualization {
+    /**
+     * Constructor for the Sorting Class
+     * 
+     * @constructor
+     * @param {String} title - title for the class
+     * @param {Array} movies - contains movies info
+     * @param {Array} sortedMovies - array of sorted movies
+     * @param {boolean} sorted - checks if the array is sorted or not
+     * @param {int} runtimeAnalysis - stores the time it takes to run a sorting algorithm
+     * @param {String} sortingAlgorithm - stores the type of sort
+     */
   constructor(movies) {
       super();
-      this.title = "Sorting Algorithms";
+      this._title = "Sorting Algorithms";
       this.movies = movies;
       this.sortedMovies = [...movies];
       this.sorted = false;
@@ -9,10 +25,13 @@ class SortingVisualization extends Visualization {
       this.sortingAlgorithm = null;
   }
 
+  /**
+   * Method which draws the sorted movies graph
+   */
   draw() {
       textAlign(LEFT);
       textSize(14);
-      text(`${this.title} (Revenue)`, 50, 70);
+      text(`${this._title} (Revenue)`, 50, 70);
 
       if (this.sorted) {
           this.drawBars(this.sortedMovies, "revenue", 100, 150, width - 200, height / 2 - 100);
@@ -25,6 +44,16 @@ class SortingVisualization extends Visualization {
       }
   }
 
+  /**
+   * Method to manage the bars which represent the movies
+   * 
+   * @param {Array} moviesArray - stores the movies in an array
+   * @param {String} property - deals with the properties of the movies
+   * @param {int} x - stores the x value of the sorted movie
+   * @param {int} y - stores the y value of the sorted movie    
+   * @param {int} w - stores the width of the bar
+   * @param {int} h - stores the height of the bar
+   */
   drawBars(moviesArray, property, x, y, w, h) {
       let maxValue = Math.max(...moviesArray.map(movie => movie[property]));
       let barWidth = w / moviesArray.length;
@@ -41,6 +70,11 @@ class SortingVisualization extends Visualization {
       }
   }
 
+  /**
+   * Method to see which key is pressed
+   * 
+   * @param {String} key - stores which key is pressed
+   */
   handleInput(key) {
     if (key === 'B' || key === 'b') {
         this.sortingAlgorithm = 'Bubble Sort';
@@ -58,7 +92,13 @@ class SortingVisualization extends Visualization {
     }
 }
 
-
+  /**
+   * Method for Bubble Sort
+   * 
+   * @param {Array} moviesArray - stores the movies in an array
+   * @param {String} property - deals with the properties of the movies
+   * @returns 
+   */
   bubbleSort(moviesArray, property) {
       let start = millis();
       for (let i = 0; i < moviesArray.length - 1; i++) {
@@ -73,6 +113,13 @@ class SortingVisualization extends Visualization {
       return moviesArray;
   }
 
+  /**
+   * Method for In-Built Sort
+   * 
+   * @param {Array} moviesArray - stores the movies in an array
+   * @param {String} property - deals with the properties of the movies
+   * @returns 
+   */
   builtInSort(moviesArray, property) {
       let start = millis();
       moviesArray.sort((a, b) => a[property] - b[property]);

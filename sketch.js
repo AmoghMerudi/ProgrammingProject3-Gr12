@@ -4,11 +4,17 @@ let recursiveVis;
 let jsonData = []; // For storing the converted JSON data
 let movies; // To store the CSV data
 
+/*
+* Function to convert CSV data to JSON
+*/
 function preload() {
     // Load the CSV file (preloading happens before setup)
     movies = loadTable('/tmdb_5000_movies.csv', 'csv', 'header');
 }
 
+/*
+* Function to convert CSV data to JSON
+*/
 function setup() {
     createCanvas(windowWidth*1.2, windowHeight*1.2);
     textSize(12);
@@ -38,6 +44,9 @@ function setup() {
     searchVis.setTarget(input);
 }
 
+/*
+* Function to draw the visualizations
+*/
 function draw() {
     background(30);
 
@@ -47,6 +56,9 @@ function draw() {
     recursiveVis.draw();
 }
 
+/*
+* Function to handle key input
+*/
 function keyPressed() {
     sortingVis.handleInput(key);
     searchVis.handleInput(key);
